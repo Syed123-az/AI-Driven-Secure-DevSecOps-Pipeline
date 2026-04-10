@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI DevSecOps Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        h1 { margin-top: 30px; }
+
+        .card {
+            margin: 20px auto;
+            padding: 25px;
+            width: 420px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+
+        input {
+            width: 75%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .scan-btn { background: #22c55e; color: white; }
+        .pipe-btn { background: #3b82f6; color: white; }
+
+        .allowed { color: #22c55e; }
+        .blocked { color: #ef4444; }
+
+        .progress {
+            width: 100%;
+            background: #334155;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            border-radius: 10px;
+            width: 0%;
+            background: #22c55e;
+        }
+
+        .history {
+            margin-top: 20px;
+            text-align: left;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        /* LIGHT MODE FIX */
+        .light {
+            background: #f1f5f9 !important;
+            color: black !important;
+        }
+
+        .light .card {
+            background: white !important;
+            border: 2px solid #ccc;
+            color: black;
+        }
+
+        .light input {
+            border: 1px solid #999;
+        }
+
+        .light .progress {
+            background: #ddd;
+        }
+
+        .light .history {
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🚀 AI DevSecOps Pipeline</h1>
+
+<div class="card">
+    <input id="payload" placeholder="Enter payload..." />
+    <br><br>
+
+    <button class="scan-btn" onclick="scan()">Scan</button>
+    <button class="pipe-btn" onclick="runPipeline()">Run Pipeline</button>
+    <button onclick="toggleTheme()">🌗 Toggle</button>
+    <button onclick="toggleAuto()">⚡ Auto</button>
+    <button onclick="exportLogs()">📁 Export</button>
+
+    <div id="result"></div>
+
+    <!-- Risk Meter -->
+    <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <!-- History -->
+    <div class="history" id="history"></div>
+</div>
+
+<script>
+
+let historyData = [];
+let darkMode = true;
+let autoMode = false;
+
+// 🌗 Theme Toggle
+function toggleTheme() {
+    document.body.classList.toggle("light");
+    darkMode = !darkMode;
+}
+
+// ⚡ Auto Mode
+function toggleAuto() {
+    autoMode = !autoMode;
+    alert(autoMode ? "Auto Mode ON" : "Auto Mode OFF");
+}
+
+// 📁 Export Logs
+function exportLogs() {
+    let data = JSON.stringify(historyData, null, 2);
+
+    let blob = new Blob([data], { type: "application/json" });
+    let url = URL.createObjectURL(blob);
+
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "scan_logs.json";
+    a.click();
+}
+
+// 🔍 Scan API
+async function scan() {
+    const payload = document.getElementById("payload").value;
+
+    const res = await fetch("http://127.0.0.1:5000/scan", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ payload })
+    });
+
+    const data = await res.json();
+
+    updateUI(data);
+
+    if (autoMode) {
+        alert(data.decision === "BLOCKED"
+            ? "🚫 AUTO: BLOCKED"
+            : "✅ AUTO: ALLOWED");
+    }
+}
+
+// 🚀 Pipeline Button
+async function runPipeline() {
+    const payload = document.getElementById("payload").value;
+
+    const res = await fetch("http://127.0.0.1:5000/scan", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ payload })
+    });
+
+    const data = await res.json();
+
+    alert(data.decision === "BLOCKED"
+        ? "🚫 Deployment BLOCKED!"
+        : "✅ Deployment ALLOWED!");
+
+    updateUI(data);
+}
+
+// 🎯 UI Update
+function updateUI(data) {
+
+    document.getElementById("result").innerHTML = `
+        <p><b>Payload:</b> ${data.payload}</p>
+        <p><b>Threat Score:</b> ${data.threat_score}</p>
+        <p><b>Decision:</b> 
+            <span class="${data.decision === 'ALLOWED' ? 'allowed' : 'blocked'}">
+                ${data.decision}
+            </span>
+        </p>
+    `;
+
+    // Risk meter
+    const percent = data.threat_score * 100;
+    const bar = document.getElementById("progressBar");
+
+    bar.style.width = percent + "%";
+    bar.style.background = percent > 70 ? "#ef4444" : "#22c55e";
+
+    // History
+    historyData.unshift(data);
+
+    let historyHTML = "<h3>📜 Scan History</h3>";
+
+    historyData.slice(0,5).forEach(item => {
+        historyHTML += `
+            <p>
+            ${item.payload} → 
+            <span class="${item.decision === 'ALLOWED' ? 'allowed' : 'blocked'}">
+            ${item.decision}
+            </span>
+            </p>
+        `;
+    });
+
+    document.getElementById("history").innerHTML = historyHTML;
+}
+
+</script>
+
+</body>
+</html>
