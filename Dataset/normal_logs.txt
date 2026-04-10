@@ -1,0 +1,50 @@
+GET /home
+User login successful
+Response code 200
+Fetching user profile
+Session created for user
+POST /api/update-profile
+File uploaded successfully
+User logout successful
+Password changed successfully
+GET /dashboard
+{"timestamp": "2024-11-19T08:15:12Z", "level": "error", "message": "Database connection failed", "context": {"db_host": "db.internal", "error_code": "ETIMEDOUT"}} 
+ERROR: Exception in user registration: UserAlreadyExistsException
+CRITICAL: 2024-11-19 10:07:00 - Out of Memory: Application terminating
+127.0.0.1 - - [12/Oct/2021:13:55:36] "GET /api/v1/users HTTP/1.1" 200 1543
+2024-11-19 08:10:30 - Admin [ID: 1] deleted document [ID: 99]
+INFO: 2024-11-19 10:00:01 - User [ID: 550] logged in from IP 192.168.1.1
+INFO: 2024-11-19 10:00:05 - Payment processed successfully for Order #12345
+INFO: Application started on port 8080
+DEBUG: [UserSession] Validating token for user 550
+DEBUG: [Database] Executing query: SELECT * FROM users WHERE id = 550
+WARN: 2024-11-19 10:05:00 - Slow response from external API: /payments (took 1500ms)
+WARN: Disk usage on /var/log is at 85%
+Login attempt successful from IP 192.168.1.5
+Token generated successfully
+Password reset link sent
+Session expired for user
+CPU usage normal
+Memory usage stable
+Server uptime 72 hours
+Backup completed successfully
+User updated email address
+User enabled two-factor authentication
+User downloaded invoice
+Profile picture updated
+Notification settings changed
+PUT /api/update-password
+DELETE /api/temp-file
+PATCH /api/settings
+OPTIONS /api/status
+INFO: Cache cleared successfully
+WARNING: Disk usage at 80%
+INFO: Background job completed
+Service restarted successfully
+INFO: Scheduled backup completed at 02:00 AM
+User changed notification preferences
+GET /api/products
+Session token validated successfully
+INFO: Email verification link sent to user
+Health check passed for service auth-service
+User viewed order history
